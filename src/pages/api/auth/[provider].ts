@@ -3,6 +3,9 @@ import { NextApiHandler } from 'next'
 import { getOAuthProvider } from '../../../utils/get-oauth-provider'
 import { getOpenIDProvider } from '../../../utils/get-openid-provider'
 
+const btoa = (str: string): string =>
+  Buffer.from(str, 'utf8').toString('base64')
+
 // next.js api is hell
 
 export const handler: NextApiHandler = async (req, res) => {
