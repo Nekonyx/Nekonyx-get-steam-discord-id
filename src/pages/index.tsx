@@ -114,7 +114,9 @@ export const HomePage: NextPage = () => {
           )}
           <div className="body card">
             <a className="link" href="/api/auth/go?to=discord">
-              <span className="link__label">Войти через Discord</span>
+              <span className="link__label">
+                {discordUser ? 'Обновить данные' : 'Войти через Discord'}
+              </span>
               <span className="link__disclaimer">
                 наш сайт не имеет какого-либо отношения к Discord
               </span>
@@ -152,7 +154,9 @@ export const HomePage: NextPage = () => {
           )}
           <div className="body card">
             <a className="link" href="/api/auth/go?to=steam">
-              <span className="link__label">Войти через Steam</span>
+              <span className="link__label">
+                {discordUser ? 'Обновить данные' : 'Войти через Steam'}
+              </span>
               <span className="link__disclaimer">
                 наш сайт не имеет какого-либо отношения к Steam
               </span>
