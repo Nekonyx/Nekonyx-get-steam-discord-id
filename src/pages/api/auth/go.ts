@@ -9,7 +9,7 @@ export const handler: NextApiHandler = async (req, res) => {
   }
 
   switch (req.query.to) {
-    case 'discord':
+    case 'steam':
       const authLink = await new Promise((res, rej) => {
         getOpenIDProvider().authenticate(
           'https://steamcommunity.com/openid',
@@ -27,7 +27,7 @@ export const handler: NextApiHandler = async (req, res) => {
       res.redirect(authLink as any)
       break
 
-    case 'steam':
+    case 'discord':
       res.redirect(getOAuthProvider().code.getUri())
       break
   }
