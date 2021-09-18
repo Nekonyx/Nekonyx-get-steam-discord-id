@@ -118,7 +118,7 @@ export const HomePage: NextPage = () => {
                 {discordUser ? 'Обновить данные' : 'Войти через Discord'}
               </span>
               <span className="link__disclaimer">
-                наш сайт не имеет какого-либо отношения к Discord
+                мы не имеем отношения к Discord
               </span>
             </a>
           </div>
@@ -158,7 +158,7 @@ export const HomePage: NextPage = () => {
                 {discordUser ? 'Обновить данные' : 'Войти через Steam'}
               </span>
               <span className="link__disclaimer">
-                наш сайт не имеет какого-либо отношения к Steam
+                мы не имеем отношения к Steam
               </span>
             </a>
           </div>
