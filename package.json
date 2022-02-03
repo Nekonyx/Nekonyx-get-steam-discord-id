@@ -8,17 +8,17 @@
   },
   "dependencies": {
     "client-oauth2": "^4.3.3",
-    "form-urlencoded": "^6.0.4",
-    "next": "latest",
+    "form-urlencoded": "^6.0.5",
+    "next": "^12.0.10",
     "openid": "^2.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
+    "@types/node": "^16.11.22",
     "@types/openid": "^2.0.2",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "typescript": "^4.4.3"
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "typescript": "^4.5.5"
   }
 }
