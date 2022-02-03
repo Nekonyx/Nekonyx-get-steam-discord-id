@@ -5,7 +5,8 @@ import { getOpenIDProvider } from '../../../utils/get-openid-provider'
 
 export const handler: NextApiHandler = async (req, res) => {
   if (typeof req.query.to !== 'string') {
-    return res.status(400).end()
+    res.status(400).end()
+    return
   }
 
   switch (req.query.to) {
@@ -16,10 +17,12 @@ export const handler: NextApiHandler = async (req, res) => {
           false,
           (err, url) => {
             if (err) {
-              return rej(err)
+              rej(err)
+              return
             }
 
-            return res(url)
+            res(url)
+            return
           }
         )
       })
@@ -32,7 +35,8 @@ export const handler: NextApiHandler = async (req, res) => {
       break
   }
 
-  return res.status(400).end()
+  res.status(400).end()
+  return
 }
 
 export default handler

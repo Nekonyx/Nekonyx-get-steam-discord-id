@@ -13,7 +13,8 @@ export const handler: NextApiHandler = async (req, res) => {
     switch (req.query.provider) {
       case 'discord': {
         if (typeof req.query.code !== 'string') {
-          return res.status(400).end()
+          res.status(400).end()
+          return
         }
 
         const { accessToken } = await getOAuthProvider().code.getToken(req.url)
