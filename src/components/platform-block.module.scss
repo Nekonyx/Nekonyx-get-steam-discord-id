@@ -1,0 +1,46 @@
+.platform {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &__link {
+    display: block;
+    background: #101011;
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    transition: 0.5s transform;
+
+    span {
+      display: block;
+
+      &:nth-child(1) {
+        font-weight: 600;
+      }
+
+      &:nth-child(2) {
+        font-size: 0.8em;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
