@@ -58,22 +58,27 @@ export default function Page() {
   }, [])
 
   return (
-    <Fragment>
-      <main className={classes.container}>
+    <div className={classes.container}>
+      <main className={classes.blocks}>
         <PlatformBlock
           platform={Platform.Discord}
+          className={classes.blocks__item}
           name="Discord"
           image={discordImage}
           user={discord}
         />
 
-        <PlatformBlock platform={Platform.Steam} name="Steam" image={steamImage} user={steam} />
+        <PlatformBlock
+          platform={Platform.Steam}
+          className={classes.blocks__item}
+          name="Steam"
+          image={steamImage}
+          user={steam}
+        />
       </main>
       <footer>
-        <a href="https://www.flaticon.com/free-icons/search" title="search icons">
-          Search icons created by Chanut - Flaticon
-        </a>
+        <span className={classes.copyright}>Favicon created by Chanut - Flaticon</span>
       </footer>
-    </Fragment>
+    </div>
   )
 }

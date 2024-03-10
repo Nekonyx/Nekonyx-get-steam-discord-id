@@ -4,8 +4,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.blocks {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: var(--gap);
+
+  &__block {
+    flex: 1;
+  }
+}
+
+.copyright {
+  color: #fff;
+  opacity: 0.2;
 }
 
 .platform {
