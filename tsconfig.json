@@ -21,9 +21,12 @@
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
+      },
+      {
+        "name": "next"
       }
     ]
   },
-  "include": ["next-env.d.ts", "src"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "src"],
   "exclude": ["node_modules"]
 }

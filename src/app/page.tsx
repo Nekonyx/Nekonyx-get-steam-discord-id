@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import Image, { StaticImageData } from 'next/image'
+'use client'
+
 import { Fragment, useEffect, useState } from 'react'
 
 import discordImage from '@/assets/images/discord.svg'
@@ -8,9 +8,9 @@ import PlatformBlock from '@/components/platform-block'
 import { Platform } from '@/constants'
 import { IUser } from '@/types/user'
 
-import classes from './index.module.scss'
+import classes from './page.module.scss'
 
-export default function IndexPage() {
+export default function Page() {
   const [discord, setDiscord] = useState<IUser>()
   const [steam, setSteam] = useState<IUser>()
 
@@ -59,13 +59,6 @@ export default function IndexPage() {
 
   return (
     <Fragment>
-      <Head>
-        <title>Узнать свой Discord ID, Steam ID</title>
-        <meta
-          name="description"
-          content="Узнайте свой Discord ID и Steam ID легко и быстро. Найдите свои идентификаторы для Discord и Steam в пару кликов."
-        />
-      </Head>
       <main className={classes.container}>
         <PlatformBlock
           platform={Platform.Discord}
@@ -74,13 +67,13 @@ export default function IndexPage() {
           user={discord}
         />
 
-        <PlatformBlock
-          platform={Platform.Steam}
-          name="Steam"
-          image={steamImage}
-          user={steam}
-        />
+        <PlatformBlock platform={Platform.Steam} name="Steam" image={steamImage} user={steam} />
       </main>
+      <footer>
+        <a href="https://www.flaticon.com/free-icons/search" title="search icons">
+          Search icons created by Chanut - Flaticon
+        </a>
+      </footer>
     </Fragment>
   )
 }

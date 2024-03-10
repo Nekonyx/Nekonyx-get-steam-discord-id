@@ -1,19 +1,19 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-
 import { Platform, STEAM_IDENTIFIER } from '@/constants'
 import { getOAuth } from '@/utils/oauth'
 import { getOpenID } from '@/utils/openid'
+import { redirect } from 'next/navigation'
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+export async function GET(
+  request: Request,
+  {
+    params
+  }: {
+    params: { platform: Platform }
+  }
 ) {
-  const platform = req.query.platform as Platform | unknown
-
-  switch (platform) {
+  switch (params.platform) {
     case Platform.Discord:
-      res.redirect(getOAuth().code.getUri())
-      return
+      redirect(getOAuth().code.getUri())
 
     case Platform.Steam:
       const url: string = await new Promise((resolve, reject) =>
@@ -27,9 +27,11 @@ export default async function handler(
         })
       )
 
-      res.redirect(url)
-      return
-  }
+      redirect(url)
 
-  res.status(404).end()
+    default:
+      return new Response(null, {
+        status: 500
+      })
+  }
 }

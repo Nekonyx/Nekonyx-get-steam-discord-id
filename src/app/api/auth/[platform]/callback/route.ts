@@ -1,24 +1,28 @@
 import type ClientOAuth2 from 'client-oauth2'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { redirect } from 'next/navigation'
 
 import { Platform } from '@/constants'
 import { IUser } from '@/types/user'
 import { getOAuth } from '@/utils/oauth'
 import { getOpenID } from '@/utils/openid'
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+export async function GET(
+  request: Request,
+  {
+    params
+  }: {
+    params: { platform: Platform }
+  }
 ) {
-  const platform = req.query.platform as Platform | unknown
+  const url = new URL(request.url)
+  const { platform } = params
 
   switch (platform) {
     case Platform.Discord: {
-      const token = await getOAuth().code.getToken(req.url!)
+      const token = await getOAuth().code.getToken(url)
       const user = await fetchDiscordUser(token)
 
-      res.redirect(getFinalLink(platform, user))
-      return
+      redirect(getFinalLink(platform, user))
     }
 
     case Platform.Steam: {
@@ -26,7 +30,7 @@ export default async function handler(
         authenticated: boolean
         claimedIdentifier?: string | undefined
       } = await new Promise((resolve, reject) =>
-        getOpenID().verifyAssertion(req, (error, result) => {
+        getOpenID().verifyAssertion(url.toString(), (error, result) => {
           if (error) {
             reject(error)
             return
@@ -37,28 +41,23 @@ export default async function handler(
       )
 
       if (!result.authenticated) {
-        res.status(401).end()
-        return
+        return new Response(null, {
+          status: 401
+        })
       }
 
-      if (
-        !/^https?:\/\/steamcommunity\.com\/openid\/id\/\d+$/.test(
-          result.claimedIdentifier!
-        )
-      ) {
-        res.status(401).end()
-        return
+      if (!/^https?:\/\/steamcommunity\.com\/openid\/id\/\d+$/.test(result.claimedIdentifier!)) {
+        return new Response(null, {
+          status: 401
+        })
       }
 
       const [steamId] = result.claimedIdentifier!.match(/(\d+)$/)!
       const user = await fetchSteamUser(steamId)
 
-      res.redirect(getFinalLink(platform, user))
-      return
+      redirect(getFinalLink(platform, user))
     }
   }
-
-  res.status(404).end()
 }
 
 /** Генерирует финальную ссылку для завершения аутентификации */

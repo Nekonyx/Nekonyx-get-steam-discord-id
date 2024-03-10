@@ -17,13 +17,7 @@ export interface IProps {
   user?: IUser
 }
 
-export function PlatformBlockComponent({
-  className,
-  platform,
-  name,
-  image,
-  user
-}: IProps) {
+export function PlatformBlockComponent({ className, platform, name, image, user }: IProps) {
   return (
     <div className={clsx(classes.platform, className)}>
       <Card className={classes.platform__brand}>
